@@ -2,9 +2,7 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, Dialo
 import { randomInt } from "crypto";
 import { useState } from "react";
 
-export default function Modal({isOpen, setIsOpen, ...rest}: any){
-  const [close, setClose] = useState(isOpen)
-  const [task, setTask] = useState({})
+export default function Modal({isOpen, setIsOpen, onAddTask, ...rest}: any){
   const [taskName, setTaskName] = useState("")
   const [taskCategory, setTaskCategory] = useState("")
 
@@ -22,10 +20,16 @@ export default function Modal({isOpen, setIsOpen, ...rest}: any){
         category: taskCategory,
         isCompleted: false
       };
-      setTask(data)
-      console.log(task)
-      handleClose()
+
+      onAddTask(data);
+
+      setTaskName('');
+      setTaskCategory('');
+      
+      handleClose();
+      
     }
+    
 
     return(
         <div>

@@ -5,25 +5,31 @@ import './App.css';
 import Card from './components/ui/Card/Card';
 import Modal from './components/ui/Modal/Modal';
 
-
+interface Task {
+  id: number;
+  name: string;
+  category: string;
+  isCompleted: boolean;
+}
 
 function App() {
-  const [list, setList] = useState([])
+  const [list, setList] = useState<Task[]>([])
   const [filters, setFilters] = useState([])
   const [filterSelected, setFilterSelected] = useState("")
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
-    console.log(open)
+  };
+
+
+  const handleAdicionarTarefa = (novaTarefa: Task) => {
+    list.push(novaTarefa);
   };
 
 
 
 
-  useEffect(() => {
-
-  }, [])
 
 
   function handleChangeFilterValue(event: any){
@@ -51,10 +57,11 @@ function App() {
                 label="Filtro"
                 onChange={handleChangeFilterValue}
               >
-                <MenuItem value={"Todas"} >Todas</MenuItem>
-                <MenuItem value={"Trabalho"}>Trabalho</MenuItem>
-                <MenuItem value={"Estudos"}>Estudos</MenuItem>
-                <MenuItem value={"Academia"}>Academia</MenuItem>
+                {list.map((task) => {
+                  return(
+                    <MenuItem value={task.category}>{task.category}</MenuItem>
+                  )
+                })}
               </Select>
             </FormControl>
         </div>
@@ -70,12 +77,14 @@ function App() {
           </ButtonGroup>
         </div>
       </div>
-        <Card title={"Item 1"} category={"Trabalho"}/>
-        <Card title={"Item 2"} category={"Estudo"}/>
-        <Card title={"Item 3"} category={"Academia"}/>
-        <Card title={"Item 4"} category={"Estudo"}/>
+        {list.map((task) => {
+          return(
+            <Card title={task.name} category={task.category}/>
+          )
+        })}
+        
 
-        <Modal isOpen={open} setIsOpen={setOpen}/>
+        <Modal isOpen={open} setIsOpen={setOpen} onAddTask={handleAdicionarTarefa}/>
     </div>
   );
 }
