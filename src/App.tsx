@@ -3,7 +3,7 @@ import {Button, ButtonGroup, FormControl, InputLabel, MenuItem, Select, TextFiel
 
 import './App.css';
 import Card from './components/ui/Card/Card';
-import Dialog from './components/ui/Dialog/Dialog';
+import Modal from './components/ui/Modal/Modal';
 
 
 
@@ -75,6 +75,7 @@ function App() {
         <Card title={"Item 3"} category={"Academia"}/>
         <Card title={"Item 4"} category={"Estudo"}/>
 
+        <Modal isOpen={open} setIsOpen={setOpen}/>
     </div>
   );
 }
