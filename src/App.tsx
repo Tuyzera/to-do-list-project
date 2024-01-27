@@ -33,6 +33,18 @@ function App() {
     setFilterSelected(event.target.value)
   }
 
+  const handleDeleteAnItem = (title: string) => {
+    setList(prevTarefas => {
+      const novaLista = prevTarefas.filter(tarefa => tarefa.name !== title);
+      
+      // Atualizar o localStorage com o array atualizado
+      localStorage.setItem('taskList', JSON.stringify(novaLista));
+      
+      return novaLista;
+    });
+
+  }
+
   useEffect(() => {
     function getAllTasks(){
       const listaSalva = localStorage.getItem('taskList');
@@ -86,10 +98,10 @@ function App() {
       </div>
         {list.map((task) => {
           return(
-            <Card title={task.name} category={task.category}/>
+            <Card title={task.name} category={task.category} onDeleteItem={handleDeleteAnItem}/>
           )
         })}
-        <Modal isOpen={open} setIsOpen={setOpen} onAddTask={handleAdicionarTarefa}/>
+        <Modal isOpen={open} setIsOpen={setOpen} onAddTask={handleAdicionarTarefa} />
     </div>
   );
 }

@@ -4,7 +4,12 @@ import './Card.css'
 
 
 
-export default function Card({title, category, ...rest}: any){
+export default function Card({title, category, onDeleteItem, ...rest}: any){
+
+    function handleDeleteItem(title: string){
+        onDeleteItem(title)
+    }
+
     return(
         <div className="container-card">
             <div className="container-card-left">
@@ -13,7 +18,7 @@ export default function Card({title, category, ...rest}: any){
             </div>
             <div className="container-card-right">
                 <Button variant="contained"color="success">Confirmar</Button>
-                <Button variant="contained" color="error">X</Button>
+                <Button variant="contained" color="error" onClick={() => handleDeleteItem(title)}>X</Button>
             </div>
         </div>
     )
