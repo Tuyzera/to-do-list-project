@@ -25,16 +25,23 @@ function App() {
 
   const handleAdicionarTarefa = (novaTarefa: Task) => {
     list.push(novaTarefa);
+    localStorage.setItem('taskList', JSON.stringify(list))
   };
-
-
-
-
 
 
   function handleChangeFilterValue(event: any){
     setFilterSelected(event.target.value)
   }
+
+  useEffect(() => {
+    function getAllTasks(){
+      const listaSalva = localStorage.getItem('taskList');
+      if (listaSalva) {
+      setList(JSON.parse(listaSalva));
+    }
+    }
+    getAllTasks()
+  }, [])
 
   return (
     <div className="container">
@@ -82,8 +89,6 @@ function App() {
             <Card title={task.name} category={task.category}/>
           )
         })}
-        
-
         <Modal isOpen={open} setIsOpen={setOpen} onAddTask={handleAdicionarTarefa}/>
     </div>
   );
