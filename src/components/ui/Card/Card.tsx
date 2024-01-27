@@ -3,6 +3,8 @@ import { Button, ButtonGroup } from '@mui/material'
 import './Card.css'
 
 
+
+
 export default function Card({title, category, ...rest}: any){
     return(
         <div className="container-card">

@@ -12,14 +12,18 @@
 
 .container-search{
     display: flex;
-    flex-direction: column;
     width: 90%;
     padding: 10px;
     border-bottom: 2px solid black;
+    gap: 5px;
 }
 
 .container-search input{
    padding-bottom: 10px;
+}
+
+.container-search Button{
+    font-size: 20px;
 }
 
 .container-filter{

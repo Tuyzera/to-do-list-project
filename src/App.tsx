@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {Button, ButtonGroup, FormControl, InputLabel, MenuItem, Select, TextField} from '@mui/material'
 
 import './App.css';
-import Card from './components/ui/Card';
+import Card from './components/ui/Card/Card';
+import Dialog from './components/ui/Dialog/Dialog';
 
 
 
@@ -10,6 +11,14 @@ function App() {
   const [list, setList] = useState([])
   const [filters, setFilters] = useState([])
   const [filterSelected, setFilterSelected] = useState("")
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+    console.log(open)
+  };
+
+
 
 
   useEffect(() => {
@@ -27,7 +36,8 @@ function App() {
         <h1>Lista de Tarefas</h1>
       </div>
       <div className='container-search'>
-          <TextField id="outlined-basic" label="Pesquisar" variant="outlined" />
+          <TextField id="outlined-basic" label="Pesquisar" variant="outlined" fullWidth/>
+          <Button variant="contained" onClick={handleClickOpen}>+</Button>
       </div>
       <div className='container-filter'>
         <div className='container-filter-right'>
@@ -64,6 +74,7 @@ function App() {
         <Card title={"Item 2"} category={"Estudo"}/>
         <Card title={"Item 3"} category={"Academia"}/>
         <Card title={"Item 4"} category={"Estudo"}/>
+
     </div>
   );
 }
