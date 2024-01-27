@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
-import {FormControl, InputLabel, MenuItem, Select, TextField} from '@mui/material'
+import React, { useEffect, useState } from 'react';
+import {Button, ButtonGroup, FormControl, InputLabel, MenuItem, Select, TextField} from '@mui/material'
 
 import './App.css';
+import Card from './components/ui/Card';
+
+
 
 function App() {
+  const [list, setList] = useState([])
   const [filters, setFilters] = useState([])
   const [filterSelected, setFilterSelected] = useState("")
+
+
+  useEffect(() => {
+
+  }, [])
 
 
   function handleChangeFilterValue(event: any){
@@ -37,13 +46,24 @@ function App() {
                 <MenuItem value={"Estudos"}>Estudos</MenuItem>
                 <MenuItem value={"Academia"}>Academia</MenuItem>
               </Select>
-</FormControl>
+            </FormControl>
         </div>
         <div className='container-filter-left'>
           <label>Ordem Alfabetica</label>
+          <ButtonGroup
+            disableElevation
+            variant="contained"
+            aria-label="Disabled elevation buttons"
+          >
+            <Button onClick={(name) => alert("One")}>Asc</Button>
+            <Button>Desc</Button>
+          </ButtonGroup>
         </div>
-         
       </div>
+        <Card title={"Item 1"} category={"Trabalho"}/>
+        <Card title={"Item 2"} category={"Estudo"}/>
+        <Card title={"Item 3"} category={"Academia"}/>
+        <Card title={"Item 4"} category={"Estudo"}/>
     </div>
   );
 }
