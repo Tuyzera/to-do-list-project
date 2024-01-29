@@ -17,6 +17,8 @@ function App() {
   const [filters, setFilters] = useState([])
   const [filterSelected, setFilterSelected] = useState("")
   const [open, setOpen] = useState(false);
+  const [itemName, setItemName] = useState("")
+  const [itemCategory, setItemCategory] = useState("")
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,6 +33,14 @@ function App() {
 
   function handleChangeFilterValue(event: any){
     setFilterSelected(event.target.value)
+  }
+
+  async function handleEditItem(title: string, category: string) {
+    setItemName(title)
+    setItemCategory(category)
+    setOpen(true)
+    
+   
   }
 
   const handleDeleteAnItem = (title: string) => {
@@ -98,10 +108,10 @@ function App() {
       </div>
         {list.map((task) => {
           return(
-            <Card title={task.name} category={task.category} onDeleteItem={handleDeleteAnItem}/>
+            <Card title={task.name} category={task.category} onDeleteItem={handleDeleteAnItem} onEditItem={handleEditItem}/>
           )
         })}
-        <Modal isOpen={open} setIsOpen={setOpen} onAddTask={handleAdicionarTarefa} />
+        <Modal isOpen={open} setIsOpen={setOpen} onAddTask={handleAdicionarTarefa} taskNameProps={itemName} taskCategoryProps={itemCategory} setTaskNameProps={setItemName}/>
     </div>
   );
 }

@@ -1,18 +1,31 @@
 import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from "@mui/material";
+import { Method } from "@testing-library/react";
 import { randomInt } from "crypto";
 import { useState } from "react";
 
-export default function Modal({isOpen, setIsOpen, onAddTask, ...rest}: any){
-  const [taskName, setTaskName] = useState("")
-  const [taskCategory, setTaskCategory] = useState("")
+interface ModalProps {
+  isOpen: boolean,
+  setIsOpen: Function,
+  onAddTask: Function
+  taskNameProps?: String,
+  taskCategoryProps?: String
+  setTaskNameProps: Function
+}
+
+export default function Modal({isOpen, setIsOpen, onAddTask, taskNameProps, taskCategoryProps, setTaskNameProps,  ...rest}: ModalProps){
+  const [taskName, setTaskName] = useState(taskNameProps || "")
+  const [taskCategory, setTaskCategory] = useState(taskCategoryProps || "")
 
   
 
     function handleClose(){
       setIsOpen(false)
+      setTaskName("")
+      setTaskCategory("")
+      setTaskNameProps("")
     }
 
-    function handleAddItem(taskName: string, taskCategory: string, event: any){
+    function handleAddItem(taskName: String, taskCategory: String, event: any){
      event.preventDefault();
       const data ={
         id: Math.ceil(Math.random()),
@@ -47,6 +60,7 @@ export default function Modal({isOpen, setIsOpen, onAddTask, ...rest}: any){
           <TextField
             autoFocus
             required
+            value={taskNameProps || ""}
             margin="dense"
             id="tarefa"
             name="tarefa"
@@ -59,6 +73,7 @@ export default function Modal({isOpen, setIsOpen, onAddTask, ...rest}: any){
           <TextField
             autoFocus
             required
+            value={taskCategoryProps}
             margin="dense"
             id="Categoria"
             name="Categoria"
