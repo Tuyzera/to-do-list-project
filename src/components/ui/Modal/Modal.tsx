@@ -1,7 +1,7 @@
 import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button } from "@mui/material";
 import { Method } from "@testing-library/react";
 import { randomInt } from "crypto";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ModalProps {
   isOpen: boolean,
@@ -16,7 +16,6 @@ export default function Modal({isOpen, setIsOpen, onAddTask, taskNameProps, task
   const [taskName, setTaskName] = useState(taskNameProps || "")
   const [taskCategory, setTaskCategory] = useState(taskCategoryProps || "")
 
-  
 
     function handleClose(){
       setIsOpen(false)
@@ -36,14 +35,11 @@ export default function Modal({isOpen, setIsOpen, onAddTask, taskNameProps, task
 
       onAddTask(data);
 
-      setTaskName('');
-      setTaskCategory('');
       
       handleClose();
       
     }
     
-
     return(
         <div>
             <Dialog
@@ -60,7 +56,6 @@ export default function Modal({isOpen, setIsOpen, onAddTask, taskNameProps, task
           <TextField
             autoFocus
             required
-            value={taskNameProps || ""}
             margin="dense"
             id="tarefa"
             name="tarefa"
@@ -73,7 +68,6 @@ export default function Modal({isOpen, setIsOpen, onAddTask, taskNameProps, task
           <TextField
             autoFocus
             required
-            value={taskCategoryProps}
             margin="dense"
             id="Categoria"
             name="Categoria"

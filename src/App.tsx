@@ -17,8 +17,8 @@ function App() {
   const [filters, setFilters] = useState([])
   const [filterSelected, setFilterSelected] = useState("")
   const [open, setOpen] = useState(false);
-  const [itemName, setItemName] = useState("")
-  const [itemCategory, setItemCategory] = useState("")
+  let itemName = "";
+  let itemCategory = "";
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -36,11 +36,18 @@ function App() {
   }
 
   async function handleEditItem(title: string, category: string) {
-    setItemName(title)
+   setItemName(title)
+   console.log("testando " + itemName)
     setItemCategory(category)
     setOpen(true)
-    
-   
+  }
+
+  function setItemCategory(value : string){
+    itemCategory = value;
+  }
+
+  function setItemName(value : string){
+    itemName = value;
   }
 
   const handleDeleteAnItem = (title: string) => {
