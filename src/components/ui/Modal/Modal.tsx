@@ -34,7 +34,6 @@ export default function Modal({isOpen, setIsOpen, onAddTask, taskNameProps, task
       };
 
       onAddTask(data);
-
       
       handleClose();
       

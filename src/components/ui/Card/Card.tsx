@@ -10,9 +10,7 @@ export default function Card({title, category, onDeleteItem , ...rest}: any){
     function handleDeleteItem(title: string){
         onDeleteItem(title)
     }
-
   
-
 
     return(
         <div className="container-card">
